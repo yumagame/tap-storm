@@ -80,8 +80,8 @@ export class Game {
     this.maxCombo = 0;
     this.lives = MAX_LIVES;
     this.wave = 1;
-    this.spawnTimer = 0.35;
-    this.waveTimer = 18;
+    this.spawnTimer = 0.15;
+    this.waveTimer = 12;
     this.elapsed = 0;
     this.flash = 0;
     this.shake = 0;
@@ -113,36 +113,65 @@ export class Game {
 
   _difficulty() {
     const w = this.wave;
+    // 最初から早く、ウェーブでさらに加速・量産
+    const spawnEvery = Math.max(0.12, 0.55 - w * 0.035);
+    // 同時出現数：wave1で1〜2 → 後半は3〜5
+    let batch = 1 + Math.floor(w / 2);
+    if (w >= 3) batch += Math.random() < 0.55 ? 1 : 0;
+    if (w >= 6) batch += Math.random() < 0.65 ? 1 : 0;
+    if (w >= 10) batch += Math.random() < 0.5 ? 1 : 0;
+    batch = Math.min(5, batch);
+
     return {
-      spawnEvery: Math.max(0.32, 1.05 - w * 0.045),
-      life: Math.max(0.85, 2.1 - w * 0.06),
-      minR: Math.max(26, 40 - w * 0.6),
-      maxR: Math.max(48, 70 - w * 0.8),
-      multi: w >= 4 && Math.random() < Math.min(0.45, 0.12 + w * 0.03) ? 2 : 1,
-      special: Math.random() < 0.12 + Math.min(0.12, w * 0.01),
+      spawnEvery,
+      life: Math.max(0.7, 1.75 - w * 0.055),
+      minR: Math.max(22, 36 - w * 0.7),
+      maxR: Math.max(40, 62 - w * 1.0),
+      multi: batch,
+      maxOnScreen: Math.min(14, 5 + w),
+      special: Math.random() < 0.14 + Math.min(0.14, w * 0.012),
     };
   }
 
   _spawn() {
     const d = this._difficulty();
-    const count = d.multi;
-    const pad = 48;
+    let count = d.multi;
+    // 画面がすでに埋まっていれば控えめに
+    const room = Math.max(0, d.maxOnScreen - this.targets.length);
+    count = Math.min(count, room);
+    if (count <= 0) return;
+
+    const pad = 36;
     const safeTop = 90;
     const safeBot = 70;
 
     for (let i = 0; i < count; i++) {
       const maxR = d.maxR;
-      const x = rand(pad + maxR, this.w - pad - maxR);
-      const y = rand(safeTop + maxR, this.h - safeBot - maxR);
-      // avoid stacking too tightly
-      let ok = true;
-      for (const t of this.targets) {
-        if (Math.hypot(t.x - x, t.y - y) < (t.maxR + maxR) * 0.75) {
-          ok = false;
+      let x = 0;
+      let y = 0;
+      let placed = false;
+      // 少し詰めてでも出す（量優先）。数回だけ位置を探す
+      for (let attempt = 0; attempt < 12; attempt++) {
+        x = rand(pad + maxR, this.w - pad - maxR);
+        y = rand(safeTop + maxR, this.h - safeBot - maxR);
+        let ok = true;
+        for (const t of this.targets) {
+          if (Math.hypot(t.x - x, t.y - y) < (t.maxR + maxR) * 0.48) {
+            ok = false;
+            break;
+          }
+        }
+        if (ok) {
+          placed = true;
           break;
         }
       }
-      if (!ok && this.targets.length > 0) continue;
+      // 見つからなくても後半はオーバーラップ気味に出す
+      if (!placed && this.targets.length > d.maxOnScreen - 2) continue;
+      if (!placed) {
+        x = rand(pad + maxR, this.w - pad - maxR);
+        y = rand(safeTop + maxR, this.h - safeBot - maxR);
+      }
 
       const special = d.special && i === 0;
       this.targets.push({
@@ -150,8 +179,8 @@ export class Game {
         y,
         r: d.minR * 0.55,
         minR: d.minR,
-        maxR: special ? maxR * 1.15 : maxR,
-        life: special ? d.life * 0.85 : d.life,
+        maxR: special ? maxR * 1.1 : maxR,
+        life: special ? d.life * 0.8 : d.life,
         age: 0,
         special,
         hue: special ? 42 : pick([160, 172, 188, 200]),
@@ -254,7 +283,7 @@ export class Game {
     this.waveTimer -= dt;
     if (this.waveTimer <= 0) {
       this.wave += 1;
-      this.waveTimer = Math.max(12, 18 - this.wave * 0.3);
+      this.waveTimer = Math.max(8, 12 - this.wave * 0.25);
       this.ui.setWave(this.wave);
       this.audio.wave();
       this.flash = 0.35;
