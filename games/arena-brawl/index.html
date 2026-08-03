@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <meta name="theme-color" content="#0a0c18" />
-  <title>ORBIT BASH</title>
+  <meta name="theme-color" content="#0c1018" />
+  <title>ARENA BRAWL</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../shared/shell.css" />
   <style>
-    #app { background: radial-gradient(ellipse at 50% 50%, #1a2050 0%, #0a0c18 60%); }
-    .eye, .hud-top .mid b, h2.result { color: #8ab0ff; }
-    .cta { color: #0a0c18; background: linear-gradient(135deg, #c0d4ff, #6a90ff); }
-    .lives i { background: #8ab0ff; box-shadow: 0 0 10px rgba(100,140,255,.5); }
+    #app { background: radial-gradient(ellipse at 50% 50%, #1a2838 0%, #0a1018 60%); }
+    .eye, h2.result, .hud-top .mid b { color: #60d0ff; }
+    .cta { color: #041018; background: linear-gradient(135deg, #90e0ff, #30a0ff); }
+    .hint-f {
+      position: absolute; left: 0; right: 0; bottom: calc(18px + env(safe-area-inset-bottom,0px));
+      text-align: center; z-index: 6; pointer-events: none; color: #6a90a8; font-size: 13px;
+    }
   </style>
 </head>
 <body>
@@ -20,23 +23,24 @@
     <canvas id="c"></canvas>
     <div id="hud" class="hidden">
       <div class="hud-top">
-        <div><span class="l">SCORE</span><b id="score">0</b></div>
+        <div><span class="l">KILLS</span><b id="score">0</b></div>
         <div class="mid"><span class="l">WAVE</span><b id="wave">1</b></div>
         <div class="right"><span class="l">BEST</span><b id="best">0</b></div>
       </div>
       <div id="combo" class="combo">×1</div>
       <div id="lives" class="lives"></div>
+      <div class="hint-f">画面をタップして移動 / 敵に触れて攻撃</div>
     </div>
     <div id="title" class="screen">
-      <p class="eye">SPIRAL ASSAULT</p>
-      <h1>ORBIT<br />BASH</h1>
-      <p class="lead">渦巻く隕石を連打粉砕 — 硬いほど高得点</p>
-      <button id="start" class="cta">PLAY</button>
+      <p class="eye">ARENA SURVIVAL</p>
+      <h1>ARENA<br />BRAWL</h1>
+      <p class="lead">タップで移動し敵に突っ込んで倒すバトルロイヤル型戦闘</p>
+      <button id="start" class="cta">ENTER</button>
     </div>
     <div id="result" class="screen hidden">
-      <p class="eye">CORE CRUSHED</p>
+      <p class="eye">ELIMINATED</p>
       <h2 class="result" id="rs">0</h2>
-      <button id="again" class="cta">AGAIN</button>
+      <button id="again" class="cta">RETRY</button>
       <button id="home" class="cta ghost">TITLE</button>
     </div>
   </div>

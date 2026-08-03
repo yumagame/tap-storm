@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a1410" />
+  <title>LANE WAR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../shared/shell.css" />
+  <style>
+    #app { background: radial-gradient(ellipse at 50% 50%, #143028 0%, #081410 60%); }
+    .eye, h2.result { color: #50f0a0; }
+    .cta { color: #041410; background: linear-gradient(135deg, #80ffc0, #30d080); }
+    #topbar {
+      position: absolute; left: 12px; right: 12px; top: calc(12px + env(safe-area-inset-top,0px));
+      display: flex; justify-content: space-between; gap: 8px; z-index: 6; pointer-events: none;
+      font-family: Orbitron, sans-serif; font-size: 13px;
+    }
+    .basehp { flex: 1; }
+    .basehp span { display: block; font-size: 10px; letter-spacing: .12em; color: #8ab89a; margin-bottom: 3px; }
+    .basehp .bar { height: 10px; background: #142018; border-radius: 5px; overflow: hidden; border: 1px solid #2a4030; }
+    .basehp .bar > i { display: block; height: 100%; }
+    #ph { background: linear-gradient(90deg,#208040,#50ff90); }
+    #eh { background: linear-gradient(90deg,#803020,#ff6040); }
+    #gold { text-align: center; min-width: 64px; color: #ffd060; font-size: 18px; font-weight: 800; padding-top: 10px; }
+    #deploy {
+      position: absolute; left: 10px; right: 10px; bottom: calc(12px + env(safe-area-inset-bottom,0px));
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; z-index: 8; pointer-events: all;
+    }
+    #deploy button {
+      border: 1.5px solid #3a6048; border-radius: 12px; min-height: 72px; background: rgba(10,24,16,.9);
+      color: #d8ffe8; font-family: Orbitron, sans-serif; font-weight: 800; cursor: pointer;
+    }
+    #deploy button .c { display: block; color: #ffd060; font-size: 12px; margin-top: 4px; }
+    #deploy button:disabled { opacity: 0.35; }
+    #stage-label {
+      position: absolute; left: 0; right: 0; top: calc(70px + env(safe-area-inset-top,0px));
+      text-align: center; z-index: 6; pointer-events: none; color: #8ab89a; letter-spacing: .16em; font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <a class="back" href="../../">← 一覧</a>
+  <div id="app">
+    <canvas id="c"></canvas>
+    <div id="hud" class="hidden">
+      <div id="topbar">
+        <div class="basehp"><span>YOU</span><div class="bar"><i id="ph"></i></div></div>
+        <div id="gold">0</div>
+        <div class="basehp"><span>ENEMY</span><div class="bar"><i id="eh"></i></div></div>
+      </div>
+      <div id="stage-label">STAGE 1</div>
+      <div id="deploy">
+        <button type="button" data-u="inf"><div>歩兵</div><span class="c">15G</span></button>
+        <button type="button" data-u="tank"><div>戦車</div><span class="c">40G</span></button>
+        <button type="button" data-u="elite"><div>精鋭</div><span class="c">70G</span></button>
+      </div>
+    </div>
+    <div id="title" class="screen">
+      <p class="eye">LANE BATTLE</p>
+      <h1>LANE<br />WAR</h1>
+      <p class="lead">部隊を出撃させて敵拠点を落とすリアルタイム戦</p>
+      <button id="start" class="cta">DEPLOY</button>
+    </div>
+    <div id="result" class="screen hidden">
+      <p class="eye" id="result-eye">VICTORY</p>
+      <h2 class="result" id="rs">1</h2>
+      <p class="lead">stage cleared</p>
+      <button id="again" class="cta">NEXT / RETRY</button>
+      <button id="home" class="cta ghost">TITLE</button>
+    </div>
+  </div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

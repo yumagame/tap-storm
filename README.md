@@ -1,17 +1,17 @@
 # MOBILE PLAY
 
-スマホ専用・連打系アクション集。
+スマホ向けゲーム集。
 
-## ゲーム
+## 一覧
 
-| ゲーム | 内容 |
-|--------|------|
-| [TAP STORM](games/tap-storm/) | 膨張玉を連打 |
-| [SWARM SMASH](games/swarm-smash/) | コアに迫る群れを潰す |
-| [RISK TAP](games/risk-tap/) | 緑/金を潰し、赤は触らない |
-| [ORBIT BASH](games/orbit-bash/) | 渦巻く隕石を粉砕 |
-| [BOSS MASH](games/boss-mash/) | ボス連打＋雑魚処理 |
+| ゲーム | ジャンル |
+|--------|----------|
+| [TAP STORM](games/tap-storm/) | 連打アクション（オリジナル） |
+| [FIST FIGHT](games/fist-fight/) | 1v1格闘バトル |
+| [LANE WAR](games/lane-war/) | レーン部隊戦 |
+| [ARENA BRAWL](games/arena-brawl/) | 闘技場サバイバル戦 |
+| [SKILL RAID](games/skill-raid/) | スキルレイドボス戦 |
 
-## Pages
+## 公開
 
 https://yumagame.github.io/tap-storm/
