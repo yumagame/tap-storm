@@ -1,4 +1,4 @@
-import { Sfx } from '../../shared/sfx.js';
+import { Sfx } from './sfx.js';
 
 const KEY = 'fist-fight-wins-v1';
 const NAMES = ['SCRAPPER', 'IRON JAW', 'SHADOW', 'BRAWLER', 'KINGPIN'];

@@ -1,4 +1,4 @@
-import { Sfx } from '../../shared/sfx.js';
+import { Sfx } from './sfx.js';
 
 const KEY = 'arena-brawl-best-v1';
 const canvas = document.getElementById('c');

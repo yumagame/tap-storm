@@ -1,4 +1,4 @@
-import { Sfx } from '../../shared/sfx.js';
+import { Sfx } from './sfx.js';
 
 const KEY = 'lane-war-stage-v1';
 const UNITS = {

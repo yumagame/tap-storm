@@ -1,4 +1,4 @@
-import { Sfx } from '../../shared/sfx.js';
+import { Sfx } from './sfx.js';
 
 const KEY = 'skill-raid-stage-v1';
 const SKILLS = {
