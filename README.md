@@ -1,27 +1,17 @@
 # MOBILE PLAY
 
-スマホ専用ミニゲーム集（縦画面・タッチ操作）。
+スマホ専用・連打系アクション集。
 
 ## ゲーム
 
-| ゲーム | 操作 |
+| ゲーム | 内容 |
 |--------|------|
-| [TAP STORM](games/tap-storm/) | 膨張する玉をタップ |
-| [DODGE DROP](games/dodge-drop/) | 左右タップで落下回避 |
-| [COLOR SNAP](games/color-snap/) | 色が揃ったらタップ |
-| [FLICK OUT](games/flick-out/) | 弾をフリックで払う |
-| [STACK PULSE](games/stack-pulse/) | タイミングで積み上げ |
+| [TAP STORM](games/tap-storm/) | 膨張玉を連打 |
+| [SWARM SMASH](games/swarm-smash/) | コアに迫る群れを潰す |
+| [RISK TAP](games/risk-tap/) | 緑/金を潰し、赤は触らない |
+| [ORBIT BASH](games/orbit-bash/) | 渦巻く隕石を粉砕 |
+| [BOSS MASH](games/boss-mash/) | ボス連打＋雑魚処理 |
 
-## ローカル
-
-```bash
-cd tap-storm
-py -m http.server 5173 --bind 0.0.0.0
-```
-
-- PC: http://127.0.0.1:5173/
-- スマホ（同じWi‑Fi）: http://（PCのIP）:5173/
-
-## GitHub Pages
+## Pages
 
 https://yumagame.github.io/tap-storm/
