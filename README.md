@@ -1,34 +1,27 @@
-# TAP STORM
+# MOBILE PLAY
 
-スマホ専用のタップアクションゲーム。光る玉が膨らみ切る前にタップして生き残れ。
+スマホ専用ミニゲーム集（縦画面・タッチ操作）。
 
-## 遊び方
+## ゲーム
 
-1. **PLAY** を押す
-2. 画面に出る玉をタップ
-3. 連打でコンボ倍率アップ
-4. 膨らみ切るとライフ減少（3回でゲームオーバー）
-5. 金色の玉は高得点
+| ゲーム | 操作 |
+|--------|------|
+| [TAP STORM](games/tap-storm/) | 膨張する玉をタップ |
+| [DODGE DROP](games/dodge-drop/) | 左右タップで落下回避 |
+| [COLOR SNAP](games/color-snap/) | 色が揃ったらタップ |
+| [FLICK OUT](games/flick-out/) | 弾をフリックで払う |
+| [STACK PULSE](games/stack-pulse/) | タイミングで積み上げ |
 
-## スマホで遊ぶ
-
-ローカル:
+## ローカル
 
 ```bash
-# プロジェクトフォルダで
-py -m http.server 5173
+cd tap-storm
+py -m http.server 5173 --bind 0.0.0.0
 ```
 
-スマホと PC が同じ Wi‑Fi なら、PC の IP でアクセス:
+- PC: http://127.0.0.1:5173/
+- スマホ（同じWi‑Fi）: http://（PCのIP）:5173/
 
-`http://（PCのIP）:5173/`
+## GitHub Pages
 
-例: `http://192.168.1.12:5173/`
-
-GitHub Pages 等にこのフォルダを上げると URL を送るだけで共有できます。
-
-## 技術
-
-- HTML / CSS / Canvas / JavaScript のみ
-- 音は WebAudio 合成（音源ファイル不要）
-- 縦画面・タッチ最適化・safe-area 対応
+https://yumagame.github.io/tap-storm/

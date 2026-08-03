@@ -1,0 +1,26 @@
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #180814; color: #ffe8f0;
+  font-family: "Barlow Condensed", system-ui, sans-serif; user-select: none; }
+#app { position: relative; max-width: 480px; height: 100%; margin: 0 auto;
+  background: radial-gradient(ellipse at 50% 50%, #401028 0%, #180814 65%); }
+#c { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
+.hidden { display: none !important; }
+.back { position: fixed; z-index: 50; top: calc(10px + env(safe-area-inset-top,0px)); left: 12px;
+  color: #ff7ab0; text-decoration: none; font-size: 14px; padding: 6px 10px;
+  background: rgba(24,8,20,.7); border: 1px solid rgba(255,120,176,.35); border-radius: 999px; }
+#hud { position: absolute; top: calc(14px + env(safe-area-inset-top,0px)); left: 0; right: 0;
+  display: flex; justify-content: space-between; padding: 0 16px; pointer-events: none; z-index: 5; }
+#hud .l { display: block; font-size: 11px; letter-spacing: .16em; color: #ff7ab0; }
+#hud b { font-family: Orbitron, sans-serif; font-size: 22px; }
+#hud .right { text-align: right; }
+.screen { position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 24px;
+  background: linear-gradient(180deg, rgba(24,8,20,.2), rgba(24,8,20,.92)); }
+.eye { color: #ff7ab0; letter-spacing: .24em; font-size: 12px; margin: 0 0 8px; }
+h1 { font-family: Orbitron, sans-serif; font-size: clamp(40px,14vw,56px); line-height: .95; margin: 0 0 12px; }
+.lead { color: #c898b0; margin: 0 0 24px; }
+h2 { font-family: Orbitron, sans-serif; font-size: 52px; color: #ff7ab0; margin: 0 0 24px; }
+.cta { border: 0; min-width: 180px; min-height: 54px; border-radius: 999px; font-family: Orbitron, sans-serif;
+  font-weight: 800; font-size: 16px; letter-spacing: .14em; color: #180814; cursor: pointer;
+  background: linear-gradient(135deg, #ffb0d0, #ff7ab0); }
+.cta.ghost { margin-top: 10px; background: transparent; color: #ffe8f0; border: 1.5px solid #c898b0; }
